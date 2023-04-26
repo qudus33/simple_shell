@@ -69,7 +69,7 @@ size_t print_lists(const list_t *m)
 
 	while (m)
 	{
-		_puts(convert_number(m->numba, 10, 0));
+		_puts(convert_numbers(m->numba, 10, 0));
 		_putchar(':');
 		_putchar(' ');
 		_puts(m->string ? m->string : "(NIL)");
@@ -95,7 +95,7 @@ list_t *nodes_starts_with(list_t *nodes, char *prefiss, char b)
 
 	while (nodes)
 	{
-		q = starts_with(nodes->string, prefiss);
+		q = nodes_starts_with(nodes->string, prefiss);
 		if (q && ((b == -1) || (*q == b)))
 			return (nodes);
 		nodes = nodes->next;

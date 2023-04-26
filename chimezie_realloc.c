@@ -48,7 +48,7 @@ void *_realloc(void *ptar, unsigned int pre_size, unsigned int lat_size)
 	if (!lat_size)
 		return (free(ptar), NULL);
 	if (lat_size == pre_size)
-		return (ptr);
+		return (ptar);
 
 	q = malloc(lat_size);
 	if (!q)

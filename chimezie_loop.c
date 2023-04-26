@@ -21,14 +21,14 @@ int hsh(info_t *infomat, char **arv)
 		g = get_input(infomat);
 		if (g != -1)
 		{
-			set_info(infomat, arv);
+			set_infor(infomat, arv);
 			built_in_res = find_built_in(infomat);
 			if (built_in_res == -1)
 				find_cmd(infomat);
 		}
 		else if (inter_active(infomat))
 			_putchar('\n');
-		free_info(infomat, 0);
+		free_infor(infomat, 0);
 	}
 	write_history(infomat);
 	free_infor(infomat, 1);
@@ -56,19 +56,19 @@ int find_built_in(info_t *infomat)
 {
 	int n, built_in_res = -1;
 	built_in_table built_intbl[] = {
-		{"exit", _mye_xit},
+		{"exit", _my_xit},
 		{"env", _my_env},
 		{"help", _my_help},
 		{"history", _my_history},
 		{"setenv", _my_set_env},
-		{"unsetenv", _my_unsete_nv},
+		{"unsetenv", _my_unset_nv},
 		{"cd", _my_cd},
 		{"alias", _my_alias},
 		{NULL, NULL}
 	};
 
-	for (n = 0; built_intbl[n].type; n++)
-		if (_strcmp(infomat->argv[0], built_intbl[n].type) == 0)
+	for (n = 0; built_intbl[n].type_b; n++)
+		if (_strcmp(infomat->argv[0], built_intbl[n].type_b) == 0)
 		{
 			infomat->line_count++;
 			built_in_res = built_intbl[n].func(infomat);
@@ -88,11 +88,11 @@ void find_cmd(info_t *infomat)
 	char *way = NULL;
 	int n, k;
 
-	infomat->way = infomat->argv[0];
-	if (info->line_count_flag == 1)
+	infomat->path = infomat->argv[0];
+	if (info_t->line_count_flag == 1)
 	{
 		infomat->line_count++;
-		infomat->line_count_flag = 0;
+		infomat->linecount_flag = 0;
 	}
 	for (n = 0, k = 0; infomat->arg[n]; n++)
 		if (!is_delim(infomat->arg[n], " \t\n"))
@@ -103,7 +103,7 @@ void find_cmd(info_t *infomat)
 	way = find_path(infomat, _get_env(infomat, "PATH="), infomat->argv[0]);
 	if (way)
 	{
-		infomat->way = way;
+		infomat->path = path;
 		fork_cmd(infomat);
 	}
 	else
@@ -138,7 +138,7 @@ void fork_cmd(info_t *infomat)
 	}
 	if (childs_pid == 0)
 	{
-		if (execve(infomat->way, infomat->argv, get_environ(infomat)) == -1)
+		if (execve(infomat->path, infomat->argv, get_environs(infomat)) == -1)
 		{
 			free_info(infomat, 1);
 			if (errno == EACCES)

@@ -9,13 +9,13 @@
  */
 int a_cmd(info_t *infomat, char *way)
 {
-	struct status sp;
+	struct status st;
 
 	(void)infomat;
-	if (!way || status(way, &sp))
+	if (!way || stat(way, &sp))
 		return (0);
 
-	if (sp.sp_mode & S_IFREG)
+	if (st.st_mode & S_IFREG)
 	{
 		return (1);
 	}
@@ -57,10 +57,10 @@ char *find_path(info_t *infomat, char *waystring, char *comand)
 
 	if (!waystring)
 		return (NULL);
-	if ((_strlen(comand) > 2) && starts_with(comand, "./"))
+	if ((_strlen(comand) > 2) && nodes_starts_with(comand, "./"))
 	{
 		if (a_cmd(infomat, comand))
-			return (cmd);
+			return (a_cmd);
 	}
 	while (1)
 	{

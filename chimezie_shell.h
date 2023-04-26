@@ -209,7 +209,7 @@ int _set_env(info_t *, char *, char *);
 char *get_history_files(info_t *info);
 int write_history(info_t *info);
 int read_history(info_t *info);
-int build_history.list(info_t *info, char *buf, int linecount);
+int build_history_list(info_t *info, char *buf, int linecount);
 int re_number_history(info_t *info);
 
 /* chimezie_lists.c */

@@ -28,7 +28,7 @@ int main(int ab, char **arv)
 			{
 				_dputs(arv[0]);
 				_dputs(": 0: Can't open ");
-				_dputs(av[1]);
+				_dputs(arv[1]);
 				_dputchar('\n');
 				_dputchar(BUF_FLUSH);
 				exit(127);
