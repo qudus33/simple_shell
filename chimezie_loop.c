@@ -1,4 +1,4 @@
-#include "shell.h"
+#include "chimezie_shell.h"
 
 /**
  * hsh - The main shell loop

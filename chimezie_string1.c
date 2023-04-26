@@ -1,4 +1,4 @@
-#include "shell.h"
+#include "chimezie_shell.h"
 
 /**
  * _strcpy - A function that copies a string

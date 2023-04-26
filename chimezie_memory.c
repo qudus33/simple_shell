@@ -1,4 +1,4 @@
-#include "shell.h"
+#include "chimezie_shell.h"
 
 /**
  * bfree - A function that frees a pointer and NULLs the address
