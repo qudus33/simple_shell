@@ -1,4 +1,4 @@
-#include "shell.h"
+#include "chimezie_shell.h"
 
 /**
  * interactive - true if shell is interactive mode

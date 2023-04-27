@@ -3,12 +3,12 @@
 /**
  * add_nodes - A function that adds a node to the start of the list
  * @head: The address of pointer to head node
- * @string: The string field of node
- * @numba: The node index used by history
+ * @str: The string field of node
+ * @num: The node index used by history
  *
  * Return: size of list
  */
-list_t *add_nodes(list_t **head, const char *string, int numba)
+list_t *add_nodes(list_t **head, const char *str, int num)
 {
 	list_t *first_head;
 
@@ -18,11 +18,11 @@ list_t *add_nodes(list_t **head, const char *string, int numba)
 	if (!first_head)
 		return (NULL);
 	_memset((void *)first_head, 0, sizeof(list_t));
-	first_head->numba = numba;
-	if (string)
+	first_head->num = num;
+	if (str)
 	{
-		first_head->string = _strdup(string);
-		if (!first_head->string)
+		first_head->str = _strdup(str);
+		if (!first_head->str)
 		{
 			free(first_head);
 			return (NULL);
@@ -36,12 +36,13 @@ list_t *add_nodes(list_t **head, const char *string, int numba)
 /**
  * add_nodes_end - A function that adds a node to the end of the list
  * @head: Address of pointer to head node
- * @string: string field of node
- * @numba: node index used by history
+ * @str: string field of node
+ * @num: node index used by history
  *
  * Return: size of list
  */
-list_t *add_nodes_end(list_t **head, const char *string, int numba)
+
+list_t *add_nodes_end(list_t **head, const char *str, int num)
 {
 	list_t *first_node, *nodes;
 
@@ -53,11 +54,11 @@ list_t *add_nodes_end(list_t **head, const char *string, int numba)
 	if (!first_node)
 		return (NULL);
 	_memset((void *)first_node, 0, sizeof(list_t));
-	first_node->numba = numba;
-	if (string)
+	first_node->num = num;
+	if (str)
 	{
-		first_node->string = _strdup(string);
-		if (!first_node->string)
+		first_node->str = _strdup(str);
+		if (!first_node->str)
 		{
 			free(first_node);
 			return (NULL);
@@ -75,19 +76,20 @@ list_t *add_nodes_end(list_t **head, const char *string, int numba)
 }
 
 /**
- * print_list_string - Function that prints only
+ * prints_list_str - Function that prints only
  * the string element of a list_t linked list
  * @m: A pointer to first node
  *
  * Return: size of list
  */
-size_t print_list_string(const list_t *m)
+
+size_t prints_list_str(const list_t *m)
 {
 	size_t n = 0;
 
 	while (m)
 	{
-		_puts(m->string ? m->string : "(NIL)");
+		_puts(m->str ? m->str : "(nil)");
 		_puts("\n");
 		m = m->next;
 		n++;
@@ -96,13 +98,14 @@ size_t print_list_string(const list_t *m)
 }
 
 /**
- * delete_nodes_at_index - A function that deletes node at given index
+ * deletes_node_at_index - A function that deletes node at given index
  * @head: Address of pointer to first node
- * @indess: The index of nodes to be deleted
+ * @index: The index of nodes to be deleted
  *
  * Return: 1 on success, 0 on failure
  */
-int delete_nodes_at_index(list_t **head, unsigned int indess)
+
+int deletes_node_at_index(list_t **head, unsigned int index)
 {
 	list_t *nodes, *last_node;
 	unsigned int n = 0;
@@ -110,21 +113,21 @@ int delete_nodes_at_index(list_t **head, unsigned int indess)
 	if (!head || !*head)
 		return (0);
 
-	if (!indess)
+	if (!index)
 	{
 		nodes = *head;
 		*head = (*head)->next;
-		free(nodes->string);
+		free(nodes->str);
 		free(nodes);
 		return (1);
 	}
 	nodes = *head;
 	while (nodes)
 	{
-		if (n == indess)
+		if (n == index)
 		{
 			last_node->next = nodes->next;
-			free(nodes->string);
+			free(nodes->str);
 			free(nodes);
 			return (1);
 		}
@@ -137,24 +140,24 @@ int delete_nodes_at_index(list_t **head, unsigned int indess)
 
 /**
  * free_lists - A function that frees all nodes of a list
- * @head_ptar: address of pointer to head node
+ * @head_ptr: address of pointer to head node
  *
  * Return: void
  */
-void free_lists(list_t **head_ptar)
+void free_lists(list_t **head_ptr)
 {
 	list_t *nodes, *next_node, *head;
 
-	if (!head_ptar || !*head_ptar)
+	if (!head_ptr || !*head_ptr)
 		return;
-	head = *head_ptar;
+	head = *head_ptr;
 	nodes = head;
 	while (nodes)
 	{
 		next_node = nodes->next;
-		free(nodes->string);
+		free(nodes->str);
 		free(nodes);
 		nodes = next_node;
 	}
-	*head_ptar = NULL;
+	*head_ptr = NULL;
 }

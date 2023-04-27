@@ -1,4 +1,4 @@
-#include "shell.h"
+#include "chimezie_shell.h"
 
 /**
  * clear_info - initialize info_t struct
@@ -59,11 +59,11 @@ void free_info(info_t *info, int all)
 		if (!info->cmd_buf)
 			free(info->arg);
 		if (info->env)
-			free_list(&(info->env));
+			free_lists(&(info->env));
 		if (info->history)
-			free_list(&(info->history));
+			free_lists(&(info->history));
 		if (info->alias)
-			free_list(&(info->alias));
+			free_lists(&(info->alias));
 		ffree(info->environ);
 			info->environ = NULL;
 		bfree((void **)info->cmd_buf);

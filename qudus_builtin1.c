@@ -1,4 +1,4 @@
-#include "shell.h"
+#include "chimezie_shell.h"
 
 /**
  * _myhistory - view history lists, one command by line, preceded
@@ -9,7 +9,7 @@
  */
 int _myhistory(info_t *info)
 {
-	print_list(info->history);
+	prints_lists(info->history);
 	return (0);
 }
 
@@ -30,7 +30,7 @@ int unset_alias(info_t *info, char *str)
 		return (1);
 	c = *q;
 	*q = 0;
-	ret_value = delete_node_at_index(&(info->alias),
+	ret_value = deletes_node_at_index(&(info->alias),
 		get_node_index(info->alias, node_starts_with(info->alias, str, -1)));
 	*q = c;
 	return (ret_value);
@@ -54,7 +54,7 @@ int set_alias(info_t *info, char *str)
 		return (unset_alias(info, str));
 
 	unset_alias(info, str);
-	return (add_node_end(&(info->alias), str, 0) == NULL);
+	return (add_nodes_end(&(info->alias), str, 0) == NULL);
 }
 
 /**

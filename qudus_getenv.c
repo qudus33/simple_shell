@@ -1,4 +1,4 @@
-#include "shell.h"
+#include "chimezie_shell.h"
 
 /**
  * get_environ - gets the string array copy of our environ
@@ -10,7 +10,7 @@ char **get_environ(info_t *info)
 {
 	if (!info->environ || info->env_changed)
 	{
-		info->environ = list_to_strings(info->env);
+		info->environ = lists_to_strings(info->env);
 		info->env_changed = 0;
 	}
 
@@ -38,7 +38,7 @@ int _unsetenv(info_t *info, char *var)
 		r = starts_with(my_node->str, var);
 		if (r && *r == '=')
 		{
-			info->env_changed = delete_node_at_index(&(info->env), t);
+			info->env_changed = deletes_node_at_index(&(info->env), t);
 			t = 0;
 			my_node = info->env;
 			continue;
@@ -86,7 +86,7 @@ int _setenv(info_t *info, char *var, char *value)
 		}
 		my_node = my_node->next;
 	}
-	add_node_end(&(info->env), buff, 0);
+	add_nodes_end(&(info->env), buff, 0);
 	free(buff);
 	info->env_changed = 1;
 	return (0);

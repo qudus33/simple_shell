@@ -1,4 +1,4 @@
-#include "shell.h"
+#include "chimezie_shell.h"
 
 /**
  * _myenv - print current environment
@@ -8,7 +8,7 @@
  */
 int _myenv(info_t *info)
 {
-	print_list_str(info->env);
+	prints_list_str(info->env);
 	return (0);
 }
 
@@ -90,7 +90,7 @@ int populate_env_list(info_t *info)
 	size_t k;
 
 	for (k = 0; environ[k]; k++)
-		add_node_end(&node, environ[k], 0);
+		add_nodes_end(&node, environ[k], 0);
 	info->env = node;
 	return (0);
 }

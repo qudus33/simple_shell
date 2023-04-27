@@ -3,52 +3,52 @@
 /**
  * **strtow - A function that splits a string into words.
  * Repeat delimiters are ignored
- * @string: The input string
+ * @str: The input string
  * @del: The delimeter string
  *
  * Return: A pointer to an array of strings, or NULL on failure
  */
 
-char **strtow(char *string, char *del)
+char **strtow(char *str, char *del)
 {
-	int i, t, k, n, numba_words = 0;
-	char **str;
+	int r, t, k, n, numba_words = 0;
+	char **s;
 
-	if (string == NULL || string[0] == 0)
+	if (str == NULL || str[0] == 0)
 		return (NULL);
 	if (!del)
 		del = " ";
-	for (i = 0; str[i] != '\0'; i++)
-		if (!is_delim(string[i], del) && (is_delim(string[i + 1], del)
-		|| !string[i + 1]))
+	for (r = 0; str[r] != '\0'; r++)
+		if (!is_delim(str[r], del) && (is_delim(str[r + 1], del)
+		|| !str[r + 1]))
 			numba_words++;
 
 	if (numba_words == 0)
 		return (NULL);
-	str = malloc((1 + numba_words) * sizeof(char *));
-	if (!str)
+	s = malloc((1 + numba_words) * sizeof(char *));
+	if (!s)
 		return (NULL);
-	for (i = 0, t = 0; t < numba_words; t++)
+	for (r = 0, t = 0; t < numba_words; t++)
 	{
-		while (is_delim(string[i], del))
-			i++;
+		while (is_delim(str[r], del))
+			r++;
 		k = 0;
-		while (!is_delim(string[i + k], del) && string[i + k])
+		while (!is_delim(str[r + k], del) && str[r + k])
 			k++;
-		str[t] = malloc((k + 1) * sizeof(char));
-		if (!str[t])
+		s[t] = malloc((k + 1) * sizeof(char));
+		if (!s[t])
 		{
 			for (k = 0; k < t; k++)
-				free(str[k]);
-			free(str);
+				free(s[k]);
+			free(s);
 			return (NULL);
 		}
 		for (n = 0; n < k; n++)
-			str[t][n] = string[i++];
-		str[t][n] = 0;
+			s[t][n] = str[r++];
+		s[t][n] = 0;
 	}
-	str[t] = NULL;
-	return (str);
+	s[t] = NULL;
+	return (s);
 }
 
 /**

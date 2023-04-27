@@ -2,43 +2,43 @@
 
 /**
  * main - The entry point
- * @ab: Argument count
- * @arv: Argument vector
+ * @ac: Argument count
+ * @av: Argument vector
  *
  * Return: 0 on success, 1 on error
  */
-int main(int ab, char **arv)
+int main(int ac, char **av)
 {
 	info_t infomat[] = { INFO_INIT };
-	int file_dir = 2;
+	int file_des = 2;
 
 	asm ("mov %1, %0\n\t"
 		"add $3, %0"
-		: "=r" (file_dir)
-		: "r" (file_dir));
+		: "=r" (file_des)
+		: "r" (file_des));
 
-	if (ab == 2)
+	if (ac == 2)
 	{
-		file_dir = open(arv[1], O_RDONLY);
-		if (file_dir == -1)
+		file_des = open(av[1], O_RDONLY);
+		if (file_des == -1)
 		{
 			if (errno == EACCES)
 				exit(126);
 			if (errno == ENOENT)
 			{
-				_dputs(arv[0]);
-				_dputs(": 0: Can't open ");
-				_dputs(arv[1]);
-				_dputchar('\n');
-				_dputchar(BUF_FLUSH);
+				_eputs(av[0]);
+				_eputs(": 0: Can't open ");
+				_eputs(av[1]);
+				_eputchar('\n');
+				_eputchar(BUF_FLUSH);
 				exit(127);
 			}
 			return (EXIT_FAILURE);
 		}
-		infomat->readfile_dir = file_dir;
+		infomat->readfd = file_des;
 	}
-	populates_env_list(infomat);
+	populate_env_list(infomat);
 	read_history(infomat);
-	hsh(infomat, arv);
+	hsh(infomat, av);
 	return (EXIT_SUCCESS);
 }

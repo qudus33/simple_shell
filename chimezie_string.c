@@ -42,35 +42,35 @@ int _strcmp(char *string1, char *string2)
 }
 
 /**
- * begin_with - A function that checks if needle starts with haystack
- * @hstack: string to search
- * @nidle: the substring to find
+ * starts_with - A function that checks if needle starts with haystack
+ * @hayStack: the string to search
+ * @ndle: substring to find
  *
  * Return: address of next char of haystack or NULL
  */
-char *begin_with(const char *hstack, const char *nidle)
+char *starts_with(const char *hayStack, const char *ndle)
 {
-	while (*nidle)
-		if (*nidle++ != *hstack++)
+	while (*ndle)
+		if (*ndle++ != *hayStack++)
 			return (NULL);
-	return ((char *)hstack);
+	return ((char *)hayStack);
 }
 
 /**
  * _strcat - A function that concatenates two strings
- * @destin: The destination buffer
- * @sorc: The source buffer
+ * @destn: The destination buffer
+ * @src: The source buffer
  *
  * Return: A pointer to destination buffer
  */
-char *_strcat(char *destin, char *sorc)
+char *_strcat(char *destn, char *src)
 {
-	char *res = destin;
+	char *res = destn;
 
-	while (*destin)
-		destin++;
-	while (*sorc)
-		*destin++ = *sorc++;
-	*destin = *sorc;
+	while (*destn)
+		destn++;
+	while (*src)
+		*destn++ = *src++;
+	*destn = *src;
 	return (res);
 }

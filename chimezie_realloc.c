@@ -5,14 +5,14 @@
  *@m: the pointer to the memory area
  *@b: the byte to fill *m with
  *@n: the amount of bytes to be filled
- *Return: (s) a pointer to the memory area s
+ *Return: (m) a pointer to the memory area s
  */
 char *_memset(char *m, char b, unsigned int n)
 {
-	unsigned int j;
+	unsigned int i;
 
-	for (j = 0; j < n; j++)
-		m[j] = b;
+	for (i = 0; i < n; i++)
+		m[i] = b;
 	return (m);
 }
 
@@ -22,13 +22,13 @@ char *_memset(char *m, char b, unsigned int n)
  */
 void ffree(char **sos)
 {
-	char **b = sos;
+	char **d = sos;
 
 	if (!sos)
 		return;
 	while (*sos)
 		free(*sos++);
-	free(b);
+	free(d);
 }
 
 /**

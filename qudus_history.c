@@ -1,4 +1,4 @@
-#include "shell.h"
+#include "chimezie_shell.h"
 
 /**
  * get_history_file - function to get history file.
@@ -99,7 +99,7 @@ int read_history(info_t *info)
 	free(buf);
 	info->histcount = line_Count;
 	while (info->histcount-- >= HIST_MAX)
-		delete_node_at_index(&(info->history), 0);
+		deletes_node_at_index(&(info->history), 0);
 	renumber_history(info);
 	return (info->histcount);
 }
@@ -119,7 +119,7 @@ int build_history_list(info_t *info, char *buf, int linecount)
 
 	if (info->history)
 		my_node = info->history;
-	add_node_end(&my_node, buf, linecount);
+	add_nodes_end(&my_node, buf, linecount);
 
 	if (!info->history)
 		info->history = my_node;
