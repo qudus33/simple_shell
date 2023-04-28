@@ -1,13 +1,13 @@
 #include "chimezie_shell.h"
 
 /**
- * list_lent - A function that determines length of linked list
+ * lists_lents - A function that determines length of linked list
  * @m: pointer to first node
  *
  * Return: size of list
  */
 
-size_t list_lent(const list_t *m)
+size_t lists_lents(const list_t *m)
 {
 	size_t n = 0;
 
@@ -29,7 +29,7 @@ size_t list_lent(const list_t *m)
 char **lists_to_strings(list_t *head)
 {
 	list_t *nodes = head;
-	size_t i = list_lent(head), j;
+	size_t i = lists_lents(head), j;
 	char **strs;
 	char *str;
 

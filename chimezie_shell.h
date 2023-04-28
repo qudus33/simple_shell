@@ -118,7 +118,7 @@ void find_cmd(info_t *);
 void fork_cmd(info_t *);
 
 /* chimezie_parser.c */
-int is_cmd(info_t *, char *);
+int y_cmd(info_t *, char *);
 char *dup_chars(char *, int, int);
 char *find_path(info_t *, char *, char *);
 
@@ -158,7 +158,7 @@ void ffree(char **);
 void *_realloc(void *, unsigned int, unsigned int);
 
 /* chimezie_memory.c */
-int bfree(void **);
+int gfree(void **);
 
 /* chimezie_atoi.c */
 int interactive(info_t *);
@@ -219,7 +219,7 @@ int deletes_node_at_index(list_t **, unsigned int);
 void free_lists(list_t **);
 
 /* chimezie_lists1.c */
-size_t list_lent(const list_t *);
+size_t lists_lents(const list_t *);
 char **lists_to_strings(list_t *);
 size_t prints_lists(const list_t *);
 list_t *node_starts_with(list_t *, char *, char);

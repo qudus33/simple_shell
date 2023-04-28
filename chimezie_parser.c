@@ -1,14 +1,14 @@
 #include "chimezie_shell.h"
 
 /**
- * is_cmd - Determines whether a file is an executable command
+ * y_cmd - Determines whether a file is an executable command
  * @info: information structure for the program
  * @path: direction to the file
  *
  * Return: 1 if true, 0 otherwise
  */
 
-int is_cmd(info_t *info, char *path)
+int y_cmd(info_t *info, char *path)
 {
 	struct stat st;
 
@@ -61,7 +61,7 @@ char *find_path(info_t *info, char *pathstr, char *cmd)
 		return (NULL);
 	if ((_strlen(cmd) > 2) && starts_with(cmd, "./"))
 	{
-		if (is_cmd(info, cmd))
+		if (y_cmd(info, cmd))
 			return (cmd);
 	}
 	while (1)
@@ -76,7 +76,7 @@ char *find_path(info_t *info, char *pathstr, char *cmd)
 				_strcat(way, "/");
 				_strcat(way, cmd);
 			}
-			if (is_cmd(info, way))
+			if (y_cmd(info, way))
 				return (way);
 			if (!pathstr[n])
 				break;

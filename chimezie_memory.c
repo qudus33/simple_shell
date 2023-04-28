@@ -1,13 +1,13 @@
 #include "chimezie_shell.h"
 
 /**
- * bfree - A function that frees a pointer and NULLs the address
+ * gfree - A function that frees a pointer and NULLs the address
  * @ptr: The address of the pointer to free
  *
  * Return: 1 if freed, otherwise 0.
  */
 
-int bfree(void **ptr)
+int gfree(void **ptr)
 {
 	if (ptr && *ptr)
 	{
